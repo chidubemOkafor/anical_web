@@ -1,0 +1,20 @@
+.image {
+    background-image: url('../assets/animesky.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.spin {
+  animation: rotate 0.1s linear infinite; /* Applies the rotation animation */
+  position: absolute;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); /* Start at 0 degrees */
+  }
+  to {
+    transform: rotate(360deg); /* End at 360 degrees (full rotation) */
+  }
+}
