@@ -88,23 +88,22 @@ const Show = () => {
   }
 
   return (
-    <div className='w-[100%] flex flex-col justify-center items-center font-Caveat_Brush '>
-      <div className='w-[100%] absolute top-0 bg-black h-[30em] z-10 bg-opacity-[80%]'>
-      
-      </div>
-      <div className='animePlaceHolder w-[100%] h-[30em] absolute z-0 top-0' style={{ backgroundImage: `url(${anime[0]?.thumbnail || placeholder})` }}></div>
+    <div className='w-[100%] flex flex-col justify-center items-center font-Caveat_Brush bg-black'>
+      <div className='w-[100%] absolute top-0 bg-black h-[30em] z-10 bg-opacity-[80%]'/>
+      <div className='animePlaceHolder w-[100%] h-[30em] absolute z-0 top-0' style={{ backgroundImage: `url(${anime[0]?.thumbnail || placeholder})` }}/>
      
-      <div className='flex justify-between w-[70%] flex-row items-center mt-10'>
-        <div className='h-[30em] w-full flex justify-center text-white z-10'>
+      <div className='flex justify-between w-[90%] md:w-[80%] sm:w-[90%] flex-row items-center mt-10'>
+      <div className='h-[30em] w-full flex flex-col md:flex-row justify-center text-white z-10'>
+
           <div 
-            className='w-[20em] h-[30em] animePlaceHolder rounded-md p-10'
+            className='md:w-[20em] w-[100%] h-[30em] animePlaceHolder rounded-tl md:rounded-bl p-10 rounded-tr rounded-br'
             style={{ backgroundImage: `url(${anime[0]?.thumbnail || placeholder})` }}
           >
             <a href={`${anime[0].official_website}`}><FaGlobe className='text-white size-10 cursor-pointer hover:text-gray-100' /></a>
           </div>
-          <div className='p-10 w-[60%]'>
+          <div className='md:p-10 p-3 md:w-[60%] w-[100%] md:h-full h-[30em] overflow-scroll overflow-x-hidden bg-gray-900'>
             <p className='text-3xl font-bold'>{anime[0]?.name || 'Unknown Title'}</p>
-            <p>{anime[0]?.description || 'No description available'}</p>
+            <p className=''>{anime[0]?.description || 'No description available'}</p>
             <div className='flex gap-5'>
               <div>
                 <FaYoutube className='text-red-500 size-10' />
@@ -125,15 +124,14 @@ const Show = () => {
           </div>
         </div>
       </div>
-      <div className='w-[70%] my-10'>
-        <p className='font-Caveat_Brush text-5xl w-full text-left flex mb-5'>Similar Animes</p>
+      <div className='w-[70%] my-10 text-white'>
+        <p className='font-Caveat_Brush md:text-5xl text-4xl w-full text-left flex mb-5'>Similar Animes</p>
         <ShowsList limit={4} genre={genre.join(', ')}/>
       </div>
       <div className='z-20 bg-red-400 top-4 w-[100%] flex items-center justify-center shadow-lg fixed'>
       {notification.messageType === MessageType.success && <Notification type={"success"} content = {notification.message}/>}
       {notification.messageType === MessageType.error && <Notification type={"error"} content = {notification.message}/>}
       </div>
-     
     </div>
   );
 };

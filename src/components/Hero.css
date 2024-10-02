@@ -6,10 +6,8 @@
 }
 
 .luffy {
-    background-image: url('../assets/vecteezy_cartoon-anime-onepiece-with-shopping-bag-ai-generative_34227675.png');
+    background-image: url('../assets/luffy.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 80vh;
-    width: 40%;
 }

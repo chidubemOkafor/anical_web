@@ -34,7 +34,7 @@ function App() {
   },[])
 
   return (
-    <>
+    <div className='font-Caveat_Brush'>
       <isSearchContext.Provider value={{showSearch, setShowSearch}}>
       <isLoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Router>
@@ -44,11 +44,11 @@ function App() {
             {isLoggedIn && <Route path="/dashboard/tracking"  element={<Dashboard section={"tracking"}/>}/>}
             {isLoggedIn && <Route path="/dashboard/profile"  element={<Dashboard section={"profile"}/>}/>}
           </Routes>
+          {showSearch && <Search/>}
         </Router>
       </isLoggedInContext.Provider>
-      {showSearch && <Search/>}
       </isSearchContext.Provider>
-    </>
+    </div>
   )
 }
 
