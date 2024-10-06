@@ -6,9 +6,10 @@ import { MdAdd } from "react-icons/md";
 import { truncateText } from '../../utils/Truncate';
 import axios from 'axios';
 import { IAnimeContent } from '../Interfaces/Interface'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+    const apiUrl: string = import.meta.env.VITE_SERVER_URL;
     const {setShowSearch} = useContext(isSearchContext)
     const [value, setValue] = useState<string>("")
     const [searchDetail, setSearchDetail] = useState<IAnimeContent[]>([])
@@ -17,7 +18,7 @@ const Search = () => {
     useEffect(() => {
         const getSearch = async() => {
                 try{
-                    const response = await axios.get(`http://localhost:8000/api/v1/searchAnime/${value}`)
+                    const response = await axios.get(`${apiUrl}/api/v1/searchAnime/${value}`)
                     console.log(response)
                     setSearchDetail(response.data)
                 } catch (error:any) {

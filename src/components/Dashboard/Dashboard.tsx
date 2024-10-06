@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 
 
 const Dashboard = ({section}:any) => {
+    const apiUrl: string = import.meta.env.VITE_SERVER_URL;
     const [open, setOpen] = useState(false)
     const [closeProfile, setCloseProfile] = useState(false)
     const [profile, setProfile] = useState<{username: string, email: string}>({username: "", email: ""})
@@ -42,7 +43,7 @@ const Dashboard = ({section}:any) => {
     useEffect(() => {
         const getProfile =async() => {
             try {
-                const response = await axios.get('http://localhost:8000/api/v1/profile',credentials)
+                const response = await axios.get(`${apiUrl}/api/v1/profile`,credentials)
                 setProfile(response.data.message)
                 console.log(profile)
             } catch(error) {

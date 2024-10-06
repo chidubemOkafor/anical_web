@@ -10,6 +10,7 @@ import { IBody, Message } from "./Interfaces/Interface";
 import Notification from "./Notification/Notification";
 
 const Login = () => {
+    const apiUrl: string = import.meta.env.VITE_SERVER_URL;
     enum MessageType {
         error,
         success
@@ -41,7 +42,7 @@ const Login = () => {
         e.preventDefault()
         try {
             setLoading(true)
-            const response = await axios.post('http://localhost:8000/api/v1/login',credentials,{
+            const response = await axios.post(`${apiUrl}/api/v1/login`,credentials,{
                 withCredentials: true
               })
               setMessage({

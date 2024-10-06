@@ -5,6 +5,7 @@ import { MdSearch } from "react-icons/md";
 import axios from "axios";
 
 const Nav = () => {
+    const apiUrl: string = import.meta.env.VITE_SERVER_URL;
     const {setShowLogin} = useContext(isToggleLoginContext)
     const {setShowSignin} = useContext(isToggleSignupContext)
     const {setShowSearch} = useContext(isSearchContext)
@@ -12,7 +13,7 @@ const Nav = () => {
 
     const handleLogout = async() => {
         try {
-            const response = await axios.post('http://localhost:8000/api/v1/logout')
+            const response = await axios.post(`${apiUrl}/api/v1/logout`)
             console.log(response)
             if(response.status === 200) {
                 setIsLoggedIn(false)

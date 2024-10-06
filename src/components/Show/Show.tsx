@@ -11,6 +11,7 @@ import ShowsList from '../ShowsList/ShowsList';
 import Notification from '../Notification/Notification';
 
 const Show = () => {
+  const apiUrl: string = import.meta.env.VITE_SERVER_URL;
   const [anime, setAnime] = useState<IAnimeContent[]>([]);
   const [genre, setGenre] = useState<string[]>([]);
   const { name } = useParams();
@@ -28,7 +29,7 @@ const Show = () => {
     const searchAnime = async () => {
       console.log("name: ", name);
       try {
-        const response = await axios.get(`http://localhost:8000/api/v1/searchAnime/${name}`);
+        const response = await axios.get(`${apiUrl}/api/v1/searchAnime/${name}`);
         console.log(response.data);
         setAnime(response.data);
         // genres
@@ -48,7 +49,7 @@ const Show = () => {
     setLoading(true)
    
    try {
-      const response = await axios.post(`http://localhost:8000/api/v1/addAnime/${name}`,{},{
+      const response = await axios.post(`${apiUrl}/api/v1/addAnime/${name}`,{},{
         withCredentials: true
       })
       console.log(response)

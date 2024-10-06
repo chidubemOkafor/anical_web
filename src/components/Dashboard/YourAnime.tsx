@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 const YourAnime = () => {
     const [animes, setAnimes] = useState<IAnimeContent[]>([])
     const [isRemovedAnime, setIsRemovedAnime] = useState<boolean>()
+    const apiUrl: string = import.meta.env.VITE_SERVER_URL;
 
     const credentials = {
         withCredentials: true
@@ -19,7 +20,7 @@ const YourAnime = () => {
         const getAnime = async() => {
             console.log("hello")
             try {
-                const response = await axios.get('http://localhost:8000/api/v1/getAllTrackingAnimes',credentials)
+                const response = await axios.get(`${apiUrl}/api/v1/getAllTrackingAnimes`,credentials)
                 setAnimes(response.data.anime)
                 console.log(animes)
             } catch (error:any) {
@@ -31,7 +32,7 @@ const YourAnime = () => {
     const handleRemove = async(removeName:string) => {
         console.log(removeName)
         try {
-            const response = await axios.delete(`http://localhost:8000/api/v1/removeAnime/${removeName}`,credentials)
+            const response = await axios.delete(`${apiUrl}/api/v1/removeAnime/${removeName}`,credentials)
             if (response.status === 200) {
                 setIsRemovedAnime(true)
             }

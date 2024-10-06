@@ -7,7 +7,9 @@ import { IAnimeContent } from '../Interfaces/Interface'
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa6";
 import { motion } from 'framer-motion'
 
-const ShowsList = ({limit, genre = ""}:any) => {   
+const ShowsList = ({limit, genre = ""}:any) => {  
+  const apiUrl: string = import.meta.env.VITE_SERVER_URL;
+
     enum PageState {
         Prev,
         Next 
@@ -44,7 +46,7 @@ const ShowsList = ({limit, genre = ""}:any) => {
 
     const getAllAnime = async(page:number):Promise<void> => {
         try {
-            const response:AxiosResponse<IAnimeContent[]> = await axios.get(`http://localhost:8000/api/v1/getHomeAnime?page=${page}&limit=${limit}&genre="${genre}"`)
+            const response:AxiosResponse<IAnimeContent[]> = await axios.get(`${apiUrl}/api/v1/getHomeAnime?page=${page}&limit=${limit}&genre="${genre}"`)
             setAnimes(response.data.data.data)
             setTotalPageNumber(Math.floor(response.data.data.animeCount/response.data.data.rowsPerPage))
             console.log(response.data.data)

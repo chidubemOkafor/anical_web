@@ -11,6 +11,7 @@ import { IBody, Message } from './Interfaces/Interface';
 // import { IisToggleSignupContext } from './Interfaces/Interface';
 
 const Signin = () => {
+  const apiUrl: string = import.meta.env.VITE_SERVER_URL;
 
   enum MessageType {
     error,
@@ -38,7 +39,7 @@ const Signin = () => {
   
       localStorage.setItem("email", credentials.email) //used for resending verification token
 
-      const response = await axios.post('http://localhost:8000/api/v1/createAccount', credentials)
+      const response = await axios.post(`${apiUrl}/api/v1/createAccount`, credentials)
       console.log(response.data.message)
       setMessage({
         messageType: MessageType.success,

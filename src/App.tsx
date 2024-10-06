@@ -12,11 +12,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const  [showSearch, setShowSearch] = useState<boolean>(false)
 
+  const apiUrl: string = import.meta.env.VITE_SERVER_URL;
+
 
   useEffect(() => {
    (async() => {
      try {
-      const response = await axios.get('http://localhost:8000/api/v1/checkAuth',{
+      const response = await axios.get(`${apiUrl}/api/v1/checkAuth`,{
         withCredentials: true,
       })
       if(response.status === 200) {

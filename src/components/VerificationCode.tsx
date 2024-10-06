@@ -8,6 +8,7 @@ import {isVerificationCodeContext, isToggleLoginContext} from '../contexts/AllCo
 import AuthButton from "./AuthButton/AuthButton";
 
 const VerificationCode = () => {
+  const apiUrl: string = import.meta.env.VITE_SERVER_URL;
   const {setShowVerification} = useContext(isVerificationCodeContext)
   const {setShowLogin} = useContext(isToggleLoginContext);
   const [code, setCode] = useState("")
@@ -18,7 +19,7 @@ const VerificationCode = () => {
     e.preventDefault()
     try {
         setLoading(true)
-        const response = await axios.post(`http://localhost:8000/api/v1/verify/${code}`)
+        const response = await axios.post(`${apiUrl}/api/v1/verify/${code}`)
         if(response.status != 200) {
             throw new Error("status is not 200")
         }
@@ -46,7 +47,7 @@ const handleResend = async() => {
         if (!email) {
             throw new Error('Email does not exist');
         }
-        const response = await axios.post(`http://localhost:8000/api/v1/generateNewToken/${email}`)
+        const response = await axios.post(`${apiUrl}/api/v1/generateNewToken/${email}`)
         console.log(response)
     } catch (error) {
         console.error(error)
